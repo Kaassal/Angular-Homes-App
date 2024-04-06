@@ -33,7 +33,7 @@ export class HousingService {
 }
 ```
 - **Search bar!:** 
-Kinda implemented? It only filters by city. Might add something else later, its very basic, but it works ¯\_(ツ)_/¯ 
+Kinda implemented? It only filters by city. Might add something else later, its very basic, but it works ¯\\\_(ツ)\_/¯ 
 
 ### Future updates
 
