@@ -3,7 +3,7 @@ The basic angular tutorial application with some fixes, made to work with angula
 
 ### Implemented updates 
 
--**Added http requests!:** 
+- **Added http requests!:** 
 
 Please note that for this proyect to work locally the local json server must be running, it is also possible for your url to differ so run the following commands.
 
@@ -32,7 +32,7 @@ export class HousingService {
     //existing code is unchanged...
 }
 ```
--**Search bar!:** 
+- **Search bar!:** 
 Kinda implemented? It only filters by city. Might add something else later, its very basic, but it works ¯\_(ツ)_/¯ 
 
 ### Future updates
