@@ -3,6 +3,33 @@ The basic angular tutorial application with some fixes, made to work with angula
 
 #### Future updates 
 
-- For now there is no https request handling, this is not necessary for this  just because it is a test proyect for me to get familiared with Angular if you want to see the data being retrieved you can do that by checking the console on the browser, however it is nice to have even if its only at a local level and I want to add it.
+- Added http requests! Please note that for this proyect to work locally the local json server must be running, it is also possible for your url to differ so run the following commands.
+
+This command will install json server, if you already have it does not need to be run, however it will most likely not hurt anything
+
+```
+npm install -g json-server
+```
+
+Now run
+
+```
+json-server --watch db.json
+```
+
+Make sure to change db.json to the actual name of your .json file **if** you do change it
+
+If your URL is anything other than **http://localhost:3000**, change it in **housing.service.ts** by doing this 
+
+```
+export class HousingService {
+
+  constructor() { }
+    url = 'your_url_here'
+
+    //existing code is unchanged...
+}
+```
+- Search bar: Kinda implementesd? It only filters by city. Might add something else later 
 
 - Images: There have been some issues with the images, these have been mentioned on offcial Angular repos, for now a single image is used for all listings. Im looking for a more elegant solution to shoving images into the assets folders, however  this works for now, more investigation is necessary. 
