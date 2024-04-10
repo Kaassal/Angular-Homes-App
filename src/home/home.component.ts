@@ -4,16 +4,15 @@ import { HousingLocationComponent } from '../app/housing-location/housing-locati
 import { HousingLocation } from '../app/housing-location';
 import { HousingService } from 'src/app/housing.service';
 
-
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, HousingLocationComponent],
   template: `
     <section>
-      <form>
-        <input type="text" placeholder="Filter by city" #filter (keyup.enter)="onEnter(filter.value)">
-        <button class="primary" type="button" (click)="filterResult(filter.value)">Search</button>
+      <form (ngSubmit)="onSubmit(filter.value, $event)">
+        <input type="text" placeholder="Filter by city" #filter (keydown.enter)="onEnter(filter.value, $event)">
+        <button class="primary" type="submit">Search</button>
       </form>
     </section>
     <section class="results">
@@ -24,19 +23,21 @@ import { HousingService } from 'src/app/housing.service';
 })
 export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
-  housingService: HousingService = inject (HousingService);
-  filteredLocationList: HousingLocation [] = [];
+  filteredLocationList: HousingLocation[] = [];
 
-  constructor() {
-    this.housingService.getAllhousingLocation().then((housingLocationList : HousingLocation[]) =>{
+  constructor(private housingService: HousingService) {
+    this.housingService.getAllhousingLocation().then((housingLocationList: HousingLocation[]) => {
       this.housingLocationList = housingLocationList;
       this.filteredLocationList = housingLocationList;
     });
-  };
+  }
 
   filterResult(text: string) {
     //if the search bar is empty, the full list of locations is shown
-    if(!text) this.filteredLocationList = this.housingLocationList;
+    if (!text) {
+      this.filteredLocationList = this.housingLocationList;
+      return;
+    }
 
     //Search logic
     this.filteredLocationList = this.housingLocationList.filter(
@@ -44,8 +45,15 @@ export class HomeComponent {
     );
   }
 
-  //Function to seach when enter is pressed 
-  onEnter(value: string) {
+  //Function to search when enter is pressed 
+  onEnter(value: string, event: any) {
+    event.preventDefault(); // Prevent form submission
+    this.filterResult(value);
+  }
+
+  //Function to handle form submission
+  onSubmit(value: string, event: any) {
+    event.preventDefault(); // Prevent form submission
     this.filterResult(value);
   }
 }
