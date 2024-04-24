@@ -29,7 +29,7 @@ export class HousingService {
   constructor() { }
     url = 'your_url_here'
 
-    //existing code is unchanged...
+    //existing code remains unchanged...
 }
 ```
 - **Search bar!:** 
